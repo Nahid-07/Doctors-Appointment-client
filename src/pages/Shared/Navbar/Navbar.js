@@ -9,13 +9,13 @@ const Navbar = () => {
   return (
     <>
       {/* desktop navbar */}
-      <div className="md:flex justify-between p-6 h-14 shadow-md items-center hidden bg-black sticky top-0 z-50">
+      <div className="lg:flex justify-between p-6 h-14 shadow-md items-center hidden bg-black sticky top-0 z-50">
         <header>
           <h1 className="text-2xl text-white font-bold">Doctors Portal</h1>
         </header>
         <nav>
           <div>
-            <ul className="flex space-x-6 text-lg text-white">
+            <ul className="flex space-x-4 text-lg text-white">
               <Link href="/">
                 <li
                   className={`${animationClass} hover:bg-indigo-500 px-3 rounded`}
@@ -65,7 +65,7 @@ const Navbar = () => {
 
       {/* navbar for mobile device */}
 
-      <div className="p-6 flex md:hidden justify-between h-10 shadow-md items-center bg-black">
+      <div className="p-6 flex lg:hidden justify-between h-10 shadow-md items-center bg-black">
         <header className="text-white font-bold">Doctors portal</header>
         {/* tap and show menu icon */}
         <div onClick={() => setOpen(!open)}>

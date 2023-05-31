@@ -5,55 +5,55 @@ import { RxHamburgerMenu } from "react-icons/rx";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
-  const animationClass = "transition ease-in-out hover:scale-110 duration-150";
+  const animationClass = "transition ease-in-out hover:scale-110 hover:text-white duration-150";
   return (
     <>
       {/* desktop navbar */}
-      <div className="lg:flex justify-between p-6 h-14 shadow-md items-center hidden bg-black sticky top-0 z-50">
+      <div className="lg:flex justify-between p-6 h-14 shadow-md items-center hidden bg-[#D4D9E3] sticky top-0 z-50">
         <header>
-          <h1 className="text-2xl text-white font-bold">Doctors Portal</h1>
+          <h1 className="text-2xl text-[#3A4256] font-bold">Doctors Portal</h1>
         </header>
         <nav>
           <div>
-            <ul className="flex space-x-4 text-lg text-white">
+            <ul className="flex space-x-4 text-lg text-[#3A4256]">
               <Link href="/">
                 <li
-                  className={`${animationClass} hover:bg-indigo-500 px-3 rounded`}
+                  className={`${animationClass} hover:bg-[#3A4256] px-3 rounded`}
                 >
                   Home
                 </li>
               </Link>
               <Link href="/dashbord">
                 <li
-                  className={`${animationClass} hover:bg-indigo-500 px-3 rounded`}
+                  className={`${animationClass} hover:bg-[#3A4256] px-3 rounded`}
                 >
                   Appointment
                 </li>
               </Link>
               <Link href="/blog">
                 <li
-                  className={`${animationClass} hover:bg-indigo-500 px-3 rounded`}
+                  className={`${animationClass} hover:bg-[#3A4256] px-3 rounded`}
                 >
                   Reviews
                 </li>
               </Link>
               <Link href="/SignIn">
                 <li
-                  className={`${animationClass} hover:bg-indigo-500 px-3 rounded`}
+                  className={`${animationClass} hover:bg-[#3A4256] px-3 rounded`}
                 >
                   Contact Us
                 </li>
               </Link>
               <Link href="/">
                 <li
-                  className={`${animationClass} hover:bg-indigo-500 px-3 rounded`}
+                  className={`${animationClass} hover:bg-[#3A4256] px-3 rounded`}
                 >
                   About
                 </li>
               </Link>
               <Link href="/">
                 <li
-                  className={`${animationClass} hover:bg-indigo-500 px-3 rounded`}
+                  className={`${animationClass} hover:bg-[#3A4256] px-3 rounded`}
                 >
                   Log In
                 </li>
@@ -65,54 +65,54 @@ const Navbar = () => {
 
       {/* navbar for mobile device */}
 
-      <div className="p-6 flex lg:hidden justify-between h-10 shadow-md items-center bg-black">
-        <header className="text-white font-bold">Doctors portal</header>
+      <div className="p-6 flex lg:hidden justify-between h-10 shadow-md items-center bg-[#D4D9E3]">
+        <header className="text-[#3A4256] font-bold">Doctors portal</header>
         {/* tap and show menu icon */}
         <div onClick={() => setOpen(!open)}>
-          <RxHamburgerMenu className="text-white font-extrabold" />
+          <RxHamburgerMenu className="text-[#3A4256] font-extrabold" />
         </div>
       </div>
 
       <nav className={`${open ? "block" : "hidden"} bg-indigo-950 `}>
-        <ul className="p-6 space-y-4 text-white bg-black">
+        <ul className="p-6 space-y-4 text-[#3A4256] bg-[#D4D9E3]">
           <Link href="/">
             <li
-              className={`${animationClass} hover:bg-indigo-500 px-3 rounded`}
+              className={`${animationClass} hover:bg-[#3A4256] px-3 rounded`}
             >
               Home
             </li>
           </Link>
           <Link href="/dashbord">
             <li
-              className={`${animationClass} hover:bg-indigo-500 px-3 rounded`}
+              className={`${animationClass} hover:bg-[#3A4256] px-3 rounded`}
             >
               Appointment
             </li>
           </Link>
           <Link href="/blog">
             <li
-              className={`${animationClass} hover:bg-indigo-500 px-3 rounded`}
+              className={`${animationClass} hover:bg-[#3A4256] px-3 rounded`}
             >
               Reviews
             </li>
           </Link>
           <Link href="/SignIn">
             <li
-              className={`${animationClass} hover:bg-indigo-500 px-3 rounded`}
+              className={`${animationClass} hover:bg-[#3A4256] px-3 rounded`}
             >
               Contact Us
             </li>
           </Link>
           <Link href="/">
             <li
-              className={`${animationClass} hover:bg-indigo-500 px-3 rounded`}
+              className={`${animationClass} hover:bg-[#3A4256] px-3 rounded`}
             >
               About
             </li>
           </Link>
           <Link href="/">
             <li
-              className={`${animationClass} hover:bg-indigo-500 px-3 rounded`}
+              className={`${animationClass} hover:bg-[#3A4256] px-3 rounded`}
             >
               Log In
             </li>

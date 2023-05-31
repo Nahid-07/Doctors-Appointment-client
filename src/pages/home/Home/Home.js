@@ -5,6 +5,7 @@ import Services from '../services/Services';
 import DentalCareBanner from '../dentalCareBanner/DentalCareBanner';
 import Banner2 from '../banner2/Banner2';
 import Testimonial from '../testimonial/Testimonial';
+import ContactUs from '../ContactUs/ContactUs';
 
 const Home = () => {
     return (
@@ -19,6 +20,7 @@ const Home = () => {
         <div className='max-w-7xl mx-auto'>
             <Testimonial></Testimonial>
         </div>
+            <ContactUs></ContactUs>
         </>
     );
 };

@@ -4,6 +4,7 @@ import ReachUs from '../reachUs/ReachUs';
 import Services from '../services/Services';
 import DentalCareBanner from '../dentalCareBanner/DentalCareBanner';
 import Banner2 from '../banner2/Banner2';
+import Testimonial from '../testimonial/Testimonial';
 
 const Home = () => {
     return (
@@ -15,6 +16,9 @@ const Home = () => {
             <DentalCareBanner></DentalCareBanner>
         </div>
         <Banner2></Banner2>
+        <div className='max-w-7xl mx-auto'>
+            <Testimonial></Testimonial>
+        </div>
         </>
     );
 };

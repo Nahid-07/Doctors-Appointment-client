@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+
 import chair from "../../../assets/images/chair.png";
 import { DayPicker } from "react-day-picker";
-import { format } from "date-fns";
 
-const AppointmentBanner = () => {
-  const [selectedDate, setSelectedDate] = useState(new Date());
+const AppointmentBanner = ({selectedDate, setSelectedDate}) => {
+  
   return (
     <section className="lg:my-40 my-10 p-10 lg:p-0">
       <div className="lg:flex items-center ">
@@ -21,7 +20,6 @@ const AppointmentBanner = () => {
           <img src={chair} alt="" />
         </div>
       </div>
-      <p>Your selected date is {format(selectedDate, "PPP")} </p>
     </section>
   );
 };

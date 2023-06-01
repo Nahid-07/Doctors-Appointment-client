@@ -16,14 +16,14 @@ const Navbar = () => {
         <nav>
           <div>
             <ul className="flex space-x-4 text-lg text-[#3A4256]">
-              <Link href="/">
+              <Link to="/">
                 <li
                   className={`${animationClass} hover:bg-[#3A4256] px-3 rounded`}
                 >
                   Home
                 </li>
-              </Link>
-              <Link href="/dashbord">
+              </Link> 
+              <Link to="/appointment">
                 <li
                   className={`${animationClass} hover:bg-[#3A4256] px-3 rounded`}
                 >

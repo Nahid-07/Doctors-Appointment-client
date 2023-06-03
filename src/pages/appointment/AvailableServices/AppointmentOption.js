@@ -2,6 +2,7 @@ import React from "react";
 
 const AppointmentOption = ({ option, setBookingOption }) => {
   const { name, slots } = option;
+  console.log(slots.length);
   return (
     <div className="card shadow">
       <div className="card-body">
@@ -14,7 +15,7 @@ const AppointmentOption = ({ option, setBookingOption }) => {
           <label
             onClick={() => setBookingOption(option)}
             htmlFor="my-modal-3"
-            className="font-semibold bg-gradient-to-r from-[#19D3AE] to-[#0FCFEC] uppercase text-white p-3 rounded"
+            className="cursor-pointer font-semibold bg-gradient-to-r from-[#19D3AE] to-[#0FCFEC] uppercase text-white p-3 rounded"
           >
             BOOK APPOINTMENT
           </label>

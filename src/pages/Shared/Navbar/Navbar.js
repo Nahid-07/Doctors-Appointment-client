@@ -51,7 +51,7 @@ const Navbar = () => {
                   About
                 </li>
               </Link>
-              <Link href="/">
+              <Link to="/login">
                 <li
                   className={`${animationClass} hover:bg-[#3A4256] px-3 rounded`}
                 >

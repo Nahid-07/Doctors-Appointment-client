@@ -58,6 +58,13 @@ const Navbar = () => {
                   Log In
                 </li>
               </Link>
+              <Link to="/signup">
+                <li
+                  className={`${animationClass} hover:bg-[#3A4256] px-3 rounded`}
+                >
+                  Sign Up
+                </li>
+              </Link>
             </ul>
           </div>
         </nav>

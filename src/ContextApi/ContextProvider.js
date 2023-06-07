@@ -12,7 +12,7 @@ const ContextProvider = ({children}) => {
         signUpWithEmailPass
     }
     return (
-
+// provider
         <ContextAuth.Provider value={authInfo} >
             {children}
         </ContextAuth.Provider >

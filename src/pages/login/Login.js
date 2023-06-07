@@ -1,10 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import { ContextAuth } from "../../ContextApi/ContextProvider";
 
 const Login = () => {
-    const {register, handleSubmit, formState:{errors}} = useForm()
-    const onSubmit = data => console.log(data);
+    const {register, handleSubmit, formState:{errors}} = useForm();
+    const {loginWithEmailPass} = useContext(ContextAuth);
+    const onSubmit = data => {
+      loginWithEmailPass(data.email, data.password)
+      .then(result => {
+        console.log(result.user);
+      })
+      .catch(err => console.log(err.message))
+    };
   return (
     <>
       <div className="flex  flex-1 flex-col justify-center px-6 py-12 lg:px-8">

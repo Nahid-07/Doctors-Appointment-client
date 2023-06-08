@@ -1,11 +1,19 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 
 import { RxHamburgerMenu } from "react-icons/rx";
+import { ContextAuth } from "../../../ContextApi/ContextProvider";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
-  const animationClass = "transition ease-in-out hover:scale-110 hover:text-white duration-150";
+  const { logOut, user } = useContext(ContextAuth);
+  const animationClass =
+    "transition ease-in-out hover:scale-110 hover:text-white duration-150";
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {})
+      .catch((err) => {});
+  };
   return (
     <>
       {/* desktop navbar */}
@@ -22,7 +30,7 @@ const Navbar = () => {
                 >
                   Home
                 </li>
-              </Link> 
+              </Link>
               <Link to="/appointment">
                 <li
                   className={`${animationClass} hover:bg-[#3A4256] px-3 rounded`}
@@ -51,20 +59,31 @@ const Navbar = () => {
                   About
                 </li>
               </Link>
-              <Link to="/login">
-                <li
+              {user ? (
+                <button
+                  onClick={handleLogOut}
                   className={`${animationClass} hover:bg-[#3A4256] px-3 rounded`}
                 >
-                  Log In
-                </li>
-              </Link>
-              <Link to="/signup">
-                <li
-                  className={`${animationClass} hover:bg-[#3A4256] px-3 rounded`}
-                >
-                  Sign Up
-                </li>
-              </Link>
+                  <li>Log out</li>
+                </button>
+              ) : (
+                <>
+                  <Link to="/signup">
+                    <li
+                      className={`${animationClass} hover:bg-[#3A4256] px-3 rounded`}
+                    >
+                      Sign Up
+                    </li>
+                  </Link>
+                  <Link to="/login">
+                    <li
+                      className={`${animationClass} hover:bg-[#3A4256] px-3 rounded`}
+                    >
+                      Log In
+                    </li>
+                  </Link>
+                </>
+              )}
             </ul>
           </div>
         </nav>
@@ -83,44 +102,32 @@ const Navbar = () => {
       <nav className={`${open ? "block" : "hidden"} bg-indigo-950 `}>
         <ul className="p-6 space-y-4 text-[#3A4256] bg-[#D4D9E3]">
           <Link href="/">
-            <li
-              className={`${animationClass} hover:bg-[#3A4256] px-3 rounded`}
-            >
+            <li className={`${animationClass} hover:bg-[#3A4256] px-3 rounded`}>
               Home
             </li>
           </Link>
           <Link href="/dashbord">
-            <li
-              className={`${animationClass} hover:bg-[#3A4256] px-3 rounded`}
-            >
+            <li className={`${animationClass} hover:bg-[#3A4256] px-3 rounded`}>
               Appointment
             </li>
           </Link>
           <Link href="/blog">
-            <li
-              className={`${animationClass} hover:bg-[#3A4256] px-3 rounded`}
-            >
+            <li className={`${animationClass} hover:bg-[#3A4256] px-3 rounded`}>
               Reviews
             </li>
           </Link>
           <Link href="/SignIn">
-            <li
-              className={`${animationClass} hover:bg-[#3A4256] px-3 rounded`}
-            >
+            <li className={`${animationClass} hover:bg-[#3A4256] px-3 rounded`}>
               Contact Us
             </li>
           </Link>
           <Link href="/">
-            <li
-              className={`${animationClass} hover:bg-[#3A4256] px-3 rounded`}
-            >
+            <li className={`${animationClass} hover:bg-[#3A4256] px-3 rounded`}>
               About
             </li>
           </Link>
           <Link href="/">
-            <li
-              className={`${animationClass} hover:bg-[#3A4256] px-3 rounded`}
-            >
+            <li className={`${animationClass} hover:bg-[#3A4256] px-3 rounded`}>
               Log In
             </li>
           </Link>

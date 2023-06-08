@@ -2,14 +2,18 @@ import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { ContextAuth } from "../../ContextApi/ContextProvider";
+import ButtonSpeener from "../../Speener/ButtonSpeener";
 
 const Login = () => {
     const {register, handleSubmit, formState:{errors}} = useForm();
-    const {loginWithEmailPass} = useContext(ContextAuth);
+    const {loginWithEmailPass,loading, setLoading} = useContext(ContextAuth);
+
+    // login method onsubmit button
     const onSubmit = data => {
       loginWithEmailPass(data.email, data.password)
       .then(result => {
         console.log(result.user);
+        setLoading(false)
       })
       .catch(err => console.log(err.message))
     };
@@ -79,7 +83,10 @@ const Login = () => {
                 type="submit"
                 className="flex w-full justify-center rounded-md bg-[#3A4256] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
-                Sign in
+                {
+                  loading ? <ButtonSpeener></ButtonSpeener> : "Sign in"
+                }
+                
               </button>
             </div>
           </form>

@@ -11,7 +11,7 @@ const AvailableServices = ({ selectedDate }) => {
   console.log(bookingOption);
   useEffect(() => {
     setLoadingData(true);
-    fetch("data.json")
+    fetch("http://localhost:5000/appointmentOptions")
       .then((res) => res.json())
       .then((data) => {
         setAppointmentOptions(data);
@@ -29,7 +29,7 @@ const AvailableServices = ({ selectedDate }) => {
         <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
           {appointmentOptions.map((option) => (
             <AppointmentOption
-              key={option.id}
+              key={option._id}
               option={option}
               setBookingOption={setBookingOption}
             ></AppointmentOption>

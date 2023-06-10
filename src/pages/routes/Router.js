@@ -4,6 +4,8 @@ import Home from "../home/Home/Home";
 import Login from "../login/Login";
 import Appointment from "../appointment/Appointment/Appointment";
 import SignUp from "../Signup/SignUp";
+import Dashbord from "../Dashboard/Dashbord";
+import PrivetRoute from "./PrivetRoute/PrivetRoute";
 
 export const router = createBrowserRouter([
     {
@@ -27,5 +29,9 @@ export const router = createBrowserRouter([
                 element : <SignUp></SignUp>
             }
         ]
+    },
+    {
+        path  : '/dashbord',
+        element : <PrivetRoute><Dashbord></Dashbord></PrivetRoute>
     }
 ])

@@ -1,9 +1,18 @@
 import React from "react";
 import { Bars } from "react-loader-spinner";
+import { useLocation } from "react-router-dom";
 
 const Speener = () => {
+  const location = useLocation();
+  console.log(location);
   return (
-    <div className="flex justify-center mt-10">
+    <div
+      className={`flex justify-center  ${
+        location.pathname === "/dashbord"
+          ? "h-screen items-center"
+          : "h-0 mt-10"
+      }`}
+    >
       <Bars
         height="80"
         width="80"

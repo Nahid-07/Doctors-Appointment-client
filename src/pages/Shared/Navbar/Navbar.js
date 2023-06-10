@@ -38,18 +38,11 @@ const Navbar = () => {
                   Appointment
                 </li>
               </Link>
-              <Link href="/blog">
+              <Link to="/dashbord">
                 <li
                   className={`${animationClass} hover:bg-[#3A4256] px-3 rounded`}
                 >
-                  Reviews
-                </li>
-              </Link>
-              <Link href="/SignIn">
-                <li
-                  className={`${animationClass} hover:bg-[#3A4256] px-3 rounded`}
-                >
-                  Contact Us
+                  Dashbord
                 </li>
               </Link>
               <Link href="/">

@@ -1,24 +1,31 @@
 import React from "react";
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { ContextAuth } from "../../ContextApi/ContextProvider";
 import ButtonSpeener from "../../Speener/ButtonSpeener";
 
 const SignUp = () => {
-  const {signUpWithEmailPass, loading, setLoading} = useContext(ContextAuth)
+  const { signUpWithEmailPass, loading, setLoading } = useContext(ContextAuth);
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
+
+  // privet route auth
+
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+  const navigate = useNavigate();
   const onSubmit = (data) => {
     signUpWithEmailPass(data.email, data.password)
-    .then(result => {
-      setLoading(false)
-      console.log(result.user)
-    })
-    .catch(err => console.log(err.message))
+      .then((result) => {
+        setLoading(false);
+        navigate(from, { replace: true });
+        console.log(result.user);
+      })
+      .catch((err) => console.log(err.message));
   };
   return (
     <>
@@ -121,10 +128,7 @@ const SignUp = () => {
                 type="submit"
                 className="flex w-full justify-center rounded-md bg-[#3A4256] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
-                {
-                  loading ? <ButtonSpeener></ButtonSpeener> : "Sign in"
-                }
-                
+                {loading ? <ButtonSpeener></ButtonSpeener> : "Sign in"}
               </button>
             </div>
           </form>

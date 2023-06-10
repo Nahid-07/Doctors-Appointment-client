@@ -1,22 +1,34 @@
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { ContextAuth } from "../../ContextApi/ContextProvider";
 import ButtonSpeener from "../../Speener/ButtonSpeener";
 
 const Login = () => {
-    const {register, handleSubmit, formState:{errors}} = useForm();
-    const {loginWithEmailPass,loading, setLoading} = useContext(ContextAuth);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const { loginWithEmailPass, loading, setLoading } = useContext(ContextAuth);
 
-    // login method onsubmit button
-    const onSubmit = data => {
-      loginWithEmailPass(data.email, data.password)
-      .then(result => {
+  // privet route authentication
+  const location = useLocation();
+  console.log(location);
+  const navigate = useNavigate();
+  const from = location.state?.from?.pathname || "/";
+  console.log(from);
+
+  // login method onsubmit button
+  const onSubmit = (data) => {
+    loginWithEmailPass(data.email, data.password)
+      .then((result) => {
         console.log(result.user);
-        setLoading(false)
+        navigate(from, { replace: true });
+        setLoading(false);
       })
-      .catch(err => console.log(err.message))
-    };
+      .catch((err) => console.log(err.message));
+  };
   return (
     <>
       <div className="flex  flex-1 flex-col justify-center px-6 py-12 lg:px-8">
@@ -27,7 +39,12 @@ const Login = () => {
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-6" action="#" method="POST">
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="space-y-6"
+            action="#"
+            method="POST"
+          >
             <div>
               <label
                 htmlFor="email"
@@ -37,7 +54,9 @@ const Login = () => {
               </label>
               <div className="mt-2">
                 <input
-                {...register("email", {required : "Email address is required"})}
+                  {...register("email", {
+                    required: "Email address is required",
+                  })}
                   id="email"
                   name="email"
                   type="email"
@@ -45,9 +64,11 @@ const Login = () => {
                   className="p-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
-              {
-                errors.email && <p role="alert" className="text-red-600">{errors.email?.message}</p>
-              }
+              {errors.email && (
+                <p role="alert" className="text-red-600">
+                  {errors.email?.message}
+                </p>
+              )}
             </div>
 
             <div>
@@ -66,15 +87,19 @@ const Login = () => {
               </div>
               <div className="mt-2">
                 <input
-                {...register("password", {required : "Password is required"})}
+                  {...register("password", {
+                    required: "Password is required",
+                  })}
                   name="password"
                   type="password"
                   autoComplete="current-password"
                   className="p-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
-                {
-                  errors.password && <p role="alert" className="text-red-600">{errors.password?.message}</p>
-                }
+                {errors.password && (
+                  <p role="alert" className="text-red-600">
+                    {errors.password?.message}
+                  </p>
+                )}
               </div>
             </div>
 
@@ -83,10 +108,7 @@ const Login = () => {
                 type="submit"
                 className="flex w-full justify-center rounded-md bg-[#3A4256] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
-                {
-                  loading ? <ButtonSpeener></ButtonSpeener> : "Sign in"
-                }
-                
+                {loading ? <ButtonSpeener></ButtonSpeener> : "Sign in"}
               </button>
             </div>
           </form>

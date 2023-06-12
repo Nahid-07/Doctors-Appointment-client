@@ -1,6 +1,7 @@
 import { format } from "date-fns";
 import React, { useContext } from "react";
 import { ContextAuth } from "../../../ContextApi/ContextProvider";
+import { toast } from "react-hot-toast";
 
 const BookingModal = ({ bookingOption, selectedDate, setBookingOption }) => {
   const { name: treatmentName, slots } = bookingOption;
@@ -22,7 +23,23 @@ const BookingModal = ({ bookingOption, selectedDate, setBookingOption }) => {
       treatmentDate,
       slot,
     };
-    setBookingOption(null);
+
+    // send booking data to the database
+
+    fetch("http://localhost:5000/bookings", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(bookingData),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.acknowledged) {
+          toast.success("Successfully booked");
+          setBookingOption(null);
+        }
+      });
   };
   return (
     <>

@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { ContextAuth } from "../../ContextApi/ContextProvider";
 import ButtonSpeener from "../../Speener/ButtonSpeener";
+import { toast } from "react-hot-toast";
 
 const SignUp = () => {
   const { signUpWithEmailPass, loading, setLoading, updateUser } =
@@ -28,9 +29,12 @@ const SignUp = () => {
         };
         updateUser(userInfo).then(() => {
           navigate(from, { replace: true });
+          toast.success("Your account created successfully")
         });
       })
-      .catch((err) => console.log(err.message));
+      .catch((err) => {
+        toast.error(err.message)
+      });
   };
   return (
     <>

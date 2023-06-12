@@ -2,7 +2,6 @@ import React from "react";
 
 const AppointmentOption = ({ option, setBookingOption }) => {
   const { name, slots } = option;
-  console.log(slots.length);
   return (
     <div className="card shadow">
       <div className="card-body">

@@ -1,10 +1,12 @@
 import { format } from "date-fns";
-import React from "react";
+import React, { useContext } from "react";
+import { ContextAuth } from "../../../ContextApi/ContextProvider";
 
 const BookingModal = ({ bookingOption, selectedDate, setBookingOption }) => {
-  const { name, slots } = bookingOption;
-  console.log(slots);
-  const handleSubmit = (e)=>{
+  const { name: treatmentName, slots } = bookingOption;
+  const { user } = useContext(ContextAuth);
+
+  const handleSubmit = (e) => {
     e.preventDefault();
     const name = e.target.name.value;
     const phone = e.target.phone.value;
@@ -16,13 +18,12 @@ const BookingModal = ({ bookingOption, selectedDate, setBookingOption }) => {
       name,
       phone,
       email,
-      treatmentName : name,
+      treatmentName,
       treatmentDate,
-      slot
-    }
-    console.log(bookingData);
-    setBookingOption(null)
-  }
+      slot,
+    };
+    setBookingOption(null);
+  };
   return (
     <>
       <input type="checkbox" id="my-modal-3" className="modal-toggle" />
@@ -34,7 +35,7 @@ const BookingModal = ({ bookingOption, selectedDate, setBookingOption }) => {
           >
             ✕
           </label>
-          <h3 className="text-lg font-bold mb-[10px]">{name}</h3>
+          <h3 className="text-lg font-bold mb-[10px]">{treatmentName}</h3>
           <form onSubmit={handleSubmit} className="grid gap-5">
             <input
               type="text"
@@ -56,7 +57,8 @@ const BookingModal = ({ bookingOption, selectedDate, setBookingOption }) => {
               placeholder="Full name"
               className="input input-bordered w-full"
               name="name"
-              required
+              defaultValue={user.displayName}
+              disabled
             />
             <input
               type="text"
@@ -70,10 +72,14 @@ const BookingModal = ({ bookingOption, selectedDate, setBookingOption }) => {
               placeholder="Email"
               className="input input-bordered w-full"
               name="email"
-              required
+              defaultValue={user.email}
+              disabled
             />
             <p></p>
-            <button type="submit" className="text-white p-3 rounded bg-[#293462] w-full">
+            <button
+              type="submit"
+              className="text-white p-3 rounded bg-[#293462] w-full"
+            >
               BOOK APPOINTMENT
             </button>
           </form>

@@ -15,22 +15,19 @@ const Login = () => {
 
   // privet route authentication
   const location = useLocation();
-  console.log(location);
   const navigate = useNavigate();
   const from = location.state?.from?.pathname || "/";
-  console.log(from);
-
   // login method onsubmit button
   const onSubmit = (data) => {
     loginWithEmailPass(data.email, data.password)
       .then(() => {
-        toast.success("Successfully logged in")
+        toast.success("Successfully logged in");
         navigate(from, { replace: true });
         setLoading(false);
       })
       .catch((err) => {
-        toast.error(err.message)
-        setLoading(false)
+        toast.error(err.message);
+        setLoading(false);
       });
   };
   return (

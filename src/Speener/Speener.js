@@ -4,7 +4,6 @@ import { useLocation } from "react-router-dom";
 
 const Speener = () => {
   const location = useLocation();
-  console.log(location);
   return (
     <div
       className={`flex justify-center  ${

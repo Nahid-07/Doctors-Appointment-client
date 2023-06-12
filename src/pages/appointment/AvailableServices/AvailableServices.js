@@ -3,27 +3,25 @@ import React, { useEffect, useState } from "react";
 import AppointmentOption from "./AppointmentOption";
 import BookingModal from "../bookingModal/BookingModal";
 import Speener from "../../../Speener/Speener";
+import { useQuery } from "@tanstack/react-query";
 
 const AvailableServices = ({ selectedDate }) => {
-  const [appointmentOptions, setAppointmentOptions] = useState([]);
   const [bookingOption, setBookingOption] = useState(null);
-  const [loadingData, setLoadingData] = useState(false);
-  console.log(bookingOption);
-  useEffect(() => {
-    setLoadingData(true);
-    fetch("http://localhost:5000/appointmentOptions")
-      .then((res) => res.json())
-      .then((data) => {
-        setAppointmentOptions(data);
-        setLoadingData(false);
-      });
-  }, []);
+
+  const {data: appointmentOptions, isLoading} = useQuery({
+    queryKey:["appointmentOptions"],
+    queryFn : async ()=> {
+      const res = await fetch("http://localhost:5000/appointmentOptions")
+      const data = await res.json();
+      return data;
+    }
+  })
   return (
     <section className="p-10 lg:p-0">
       <p className="text-[#19D3AE] text-2xl text-center">
         Available Appointments on {format(selectedDate, "PPP")}
       </p>
-      {loadingData ? (
+      {isLoading ? (
         <Speener></Speener>
       ) : (
         <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">

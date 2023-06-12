@@ -1,5 +1,5 @@
 import { format } from "date-fns";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import AppointmentOption from "./AppointmentOption";
 import BookingModal from "../bookingModal/BookingModal";
 import Speener from "../../../Speener/Speener";

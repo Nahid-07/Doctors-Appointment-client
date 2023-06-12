@@ -6,7 +6,8 @@ import { ContextAuth } from "../../ContextApi/ContextProvider";
 import ButtonSpeener from "../../Speener/ButtonSpeener";
 
 const SignUp = () => {
-  const { signUpWithEmailPass, loading, setLoading } = useContext(ContextAuth);
+  const { signUpWithEmailPass, loading, setLoading, updateUser } =
+    useContext(ContextAuth);
   const {
     register,
     handleSubmit,
@@ -22,8 +23,12 @@ const SignUp = () => {
     signUpWithEmailPass(data.email, data.password)
       .then((result) => {
         setLoading(false);
-        navigate(from, { replace: true });
-        console.log(result.user);
+        const userInfo = {
+          displayName: data.fullName,
+        };
+        updateUser(userInfo).then(() => {
+          navigate(from, { replace: true });
+        });
       })
       .catch((err) => console.log(err.message));
   };

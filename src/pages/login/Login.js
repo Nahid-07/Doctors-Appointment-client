@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { ContextAuth } from "../../ContextApi/ContextProvider";
 import ButtonSpeener from "../../Speener/ButtonSpeener";
+import { toast } from "react-hot-toast";
 
 const Login = () => {
   const {
@@ -22,12 +23,15 @@ const Login = () => {
   // login method onsubmit button
   const onSubmit = (data) => {
     loginWithEmailPass(data.email, data.password)
-      .then((result) => {
-        console.log(result.user);
+      .then(() => {
+        toast.success("Successfully logged in")
         navigate(from, { replace: true });
         setLoading(false);
       })
-      .catch((err) => console.log(err.message));
+      .catch((err) => {
+        toast.error(err.message)
+        setLoading(false)
+      });
   };
   return (
     <>

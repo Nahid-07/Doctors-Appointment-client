@@ -3,7 +3,7 @@ import React, { useContext } from "react";
 import { ContextAuth } from "../../../ContextApi/ContextProvider";
 import { toast } from "react-hot-toast";
 
-const BookingModal = ({ bookingOption, selectedDate, setBookingOption }) => {
+const BookingModal = ({ bookingOption, selectedDate, setBookingOption, refetch }) => {
   const { name: treatmentName, slots } = bookingOption;
   const { user } = useContext(ContextAuth);
 
@@ -38,6 +38,7 @@ const BookingModal = ({ bookingOption, selectedDate, setBookingOption }) => {
         if (data.acknowledged) {
           toast.success("Successfully booked");
           setBookingOption(null);
+          refetch()
         }
       });
   };
@@ -58,7 +59,7 @@ const BookingModal = ({ bookingOption, selectedDate, setBookingOption }) => {
               type="text"
               placeholder="Type here"
               className="input input-bordered w-full"
-              value={format(selectedDate, "PP")}
+              value={format(selectedDate, "PPP")}
               name="treatmentDate"
               disabled
             />

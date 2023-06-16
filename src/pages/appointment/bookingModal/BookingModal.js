@@ -2,6 +2,7 @@ import { format } from "date-fns";
 import React, { useContext } from "react";
 import { ContextAuth } from "../../../ContextApi/ContextProvider";
 import { toast } from "react-hot-toast";
+import { Link } from "react-router-dom";
 
 const BookingModal = ({ bookingOption, selectedDate, setBookingOption, refetch }) => {
   const { name: treatmentName, slots } = bookingOption;
@@ -78,7 +79,7 @@ const BookingModal = ({ bookingOption, selectedDate, setBookingOption, refetch }
               placeholder="Full name"
               className="input input-bordered w-full"
               name="name"
-              defaultValue={user.displayName}
+              defaultValue={user?.displayName}
               disabled
             />
             <input
@@ -93,16 +94,24 @@ const BookingModal = ({ bookingOption, selectedDate, setBookingOption, refetch }
               placeholder="Email"
               className="input input-bordered w-full"
               name="email"
-              defaultValue={user.email}
+              defaultValue={user?.email}
               disabled
             />
-            <p></p>
-            <button
+            {
+              user?.email ? <button
               type="submit"
               className="text-white p-3 rounded bg-[#293462] w-full"
             >
               BOOK APPOINTMENT
+            </button> : <Link to="/login">
+            <button
+              
+              className="text-white p-3 rounded bg-[#293462] w-full"
+            >
+              Please login first
             </button>
+            </Link>
+            }
           </form>
         </div>
       </div>

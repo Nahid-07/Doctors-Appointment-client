@@ -39,6 +39,9 @@ const BookingModal = ({ bookingOption, selectedDate, setBookingOption, refetch }
           toast.success("Successfully booked");
           setBookingOption(null);
           refetch()
+        }else{
+          toast.error(data.message)
+          setBookingOption(null);
         }
       });
   };

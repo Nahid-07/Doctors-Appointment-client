@@ -6,6 +6,7 @@ import Appointment from "../appointment/Appointment/Appointment";
 import SignUp from "../Signup/SignUp";
 import DashboardLayout from "../../layout/DashboardLayout";
 import PrivetRoute from "./PrivetRoute/PrivetRoute";
+import MyAppointment from "../Dashboard/MyAppointment";
 
 export const router = createBrowserRouter([
     {
@@ -33,5 +34,11 @@ export const router = createBrowserRouter([
     {
         path : '/dashbord',
         element: <PrivetRoute><DashboardLayout></DashboardLayout></PrivetRoute>,
+        children:[
+            {
+                path : 'myappointment',
+                element: <MyAppointment></MyAppointment>
+            }
+        ]
     }
 ])

@@ -4,7 +4,7 @@ import Home from "../home/Home/Home";
 import Login from "../login/Login";
 import Appointment from "../appointment/Appointment/Appointment";
 import SignUp from "../Signup/SignUp";
-import Dashbord from "../Dashboard/Dashbord";
+import DashboardLayout from "../../layout/DashboardLayout";
 import PrivetRoute from "./PrivetRoute/PrivetRoute";
 
 export const router = createBrowserRouter([
@@ -31,7 +31,7 @@ export const router = createBrowserRouter([
         ]
     },
     {
-        path  : '/dashbord',
-        element : <PrivetRoute><Dashbord></Dashbord></PrivetRoute>
+        path : '/dashbord',
+        element: <PrivetRoute><DashboardLayout></DashboardLayout></PrivetRoute>,
     }
 ])

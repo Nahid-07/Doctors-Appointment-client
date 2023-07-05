@@ -36,7 +36,7 @@ export const router = createBrowserRouter([
         element: <PrivetRoute><DashboardLayout></DashboardLayout></PrivetRoute>,
         children:[
             {
-                path : 'myappointment',
+                path : 'my-appointment',
                 element: <MyAppointment></MyAppointment>
             }
         ]

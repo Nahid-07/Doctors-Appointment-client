@@ -28,15 +28,34 @@ const SignUp = () => {
           displayName: data.fullName,
         };
         updateUser(userInfo).then(() => {
+          saveUserToDatabase(data.email, data.fullName)
           navigate(from, { replace: true });
-          toast.success("Your account created successfully")
+          toast.success("Your account created successfully");
         });
       })
       .catch((err) => {
         toast.error(err.message);
-        setLoading(false)
-        
+        setLoading(false);
       });
+
+
+    // send user information to the DB
+
+    const saveUserToDatabase = (email, name) => {
+      const user = { email, name };
+
+      fetch("http://localhost:5000/users", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(user),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+        });
+    };
   };
   return (
     <>

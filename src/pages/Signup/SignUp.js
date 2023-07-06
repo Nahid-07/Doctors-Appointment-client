@@ -1,7 +1,7 @@
 import React from "react";
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
-import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { ContextAuth } from "../../ContextApi/ContextProvider";
 import ButtonSpeener from "../../Speener/ButtonSpeener";
 import { toast } from "react-hot-toast";
@@ -22,7 +22,7 @@ const SignUp = () => {
   const navigate = useNavigate();
   const onSubmit = (data) => {
     signUpWithEmailPass(data.email, data.password)
-      .then((result) => {
+      .then(() => {
         setLoading(false);
         const userInfo = {
           displayName: data.fullName,
@@ -33,7 +33,9 @@ const SignUp = () => {
         });
       })
       .catch((err) => {
-        toast.error(err.message)
+        toast.error(err.message);
+        setLoading(false)
+        
       });
   };
   return (

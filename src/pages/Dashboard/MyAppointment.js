@@ -1,44 +1,50 @@
-import React from 'react';
+import React, { useContext } from "react";
+import { ContextAuth } from "../../ContextApi/ContextProvider";
+import { useQuery } from "@tanstack/react-query";
+import Speener from "../../Speener/Speener";
 
 const MyAppointment = () => {
-    return (
-        <div className="overflow-x-auto">
-  <table className="table">
-    {/* head */}
-    <thead>
-      <tr>
-        <th></th>
-        <th>Name</th>
-        <th>Job</th>
-        <th>Favorite Color</th>
-      </tr>
-    </thead>
-    <tbody>
-      {/* row 1 */}
-      <tr className="bg-base-200">
-        <th>1</th>
-        <td>Cy Ganderton</td>
-        <td>Quality Control Specialist</td>
-        <td>Blue</td>
-      </tr>
-      {/* row 2 */}
-      <tr>
-        <th>2</th>
-        <td>Hart Hagerty</td>
-        <td>Desktop Support Technician</td>
-        <td>Purple</td>
-      </tr>
-      {/* row 3 */}
-      <tr>
-        <th>3</th>
-        <td>Brice Swyre</td>
-        <td>Tax Accountant</td>
-        <td>Red</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-    );
+  const { user } = useContext(ContextAuth);
+  const url = `http://localhost:5000/bookings?email=${user?.email}`;
+  const { data: bookings, isLoading } = useQuery({
+    queryKey: ["bookings", user?.email],
+    queryFn: async () => {
+      const res = await fetch(url);
+      const data = await res.json();
+      return data;
+    },
+  });
+  return (
+    <div className="overflow-x-auto">
+      <table className="table">
+        {/* head */}
+        <thead>
+          <tr>
+            <th></th>
+            <th>Name</th>
+            <th>Treatment Name</th>
+            <th>Date</th>
+            <th>Slot</th>
+          </tr>
+        </thead>
+        {isLoading ? (
+          <Speener></Speener>
+        ) : (
+          <tbody>
+            {bookings.map((booking, i) => (
+              <tr key={booking._id} className="bg-base-200">
+                <th>{i + 1}</th>
+                <td>{booking.name}</td>
+                <td>{booking.treatmentName}</td>
+                <td>{booking.treatmentDate}</td>
+                <td>{booking.slot}</td>
+              </tr>
+            ))}
+          </tbody>
+        )}
+      </table>
+    </div>
+  );
 };
 
 export default MyAppointment;

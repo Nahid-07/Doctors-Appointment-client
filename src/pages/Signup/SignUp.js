@@ -39,7 +39,7 @@ const SignUp = () => {
       });
 
 
-    // send user information to the DB
+    // send user information to the Database
 
     const saveUserToDatabase = (email, name) => {
       const user = { email, name };

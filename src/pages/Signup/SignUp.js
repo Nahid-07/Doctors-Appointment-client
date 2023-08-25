@@ -29,7 +29,6 @@ const SignUp = () => {
         };
         updateUser(userInfo).then(() => {
           saveUserToDatabase(data.email, data.fullName)
-          getUserToken(data.email)
           navigate(from, { replace: true });
           toast.success("Your account created successfully");
         });
@@ -58,15 +57,6 @@ const SignUp = () => {
         });
     };
   };
-
-  const getUserToken = email =>{
-    fetch(`http://localhost:5000/jwt?email=${email}`)
-    .then(res => res.json()).then(data => {
-      if(data.accessToken){
-        localStorage.setItem('accessToken', data.accessToken)
-      }
-    })
-  }
   return (
     <>
       <div className="flex  flex-1 flex-col justify-center px-6 py-12 lg:px-8">

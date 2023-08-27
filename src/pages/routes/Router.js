@@ -7,6 +7,7 @@ import SignUp from "../Signup/SignUp";
 import DashboardLayout from "../../layout/DashboardLayout";
 import PrivetRoute from "./PrivetRoute/PrivetRoute";
 import MyAppointment from "../Dashboard/MyAppointment";
+import AllUsers from "../Dashboard/allUsers/AllUsers";
 
 export const router = createBrowserRouter([
     {
@@ -39,7 +40,11 @@ export const router = createBrowserRouter([
             {
                 path : 'my-appointment',
                 element: <MyAppointment></MyAppointment>
-            }
+            },
+            {
+                path : 'allUsers',
+                element: <AllUsers></AllUsers>
+            },
         ]
     }
 ])

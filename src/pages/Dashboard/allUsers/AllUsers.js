@@ -22,8 +22,8 @@ const AllUsers = () => {
               <th></th>
               <th>Name</th>
               <th>Email</th>
-              {/* <th>Date</th>
-              <th>Slot</th> */}
+              <th>Admin</th>
+              <th>Delete</th>
             </tr>
           </thead>
           {isLoading ? (
@@ -35,6 +35,8 @@ const AllUsers = () => {
                   <th>{i + 1}</th>
                   <td>{user.name}</td>
                   <td>{user.email}</td>
+                  <td><button className='btn btn-xs bg-blue-500 text-white'>Make Admin</button></td>
+                  <td><button className='btn btn-xs bg-red-500 text-white'>Make Admin</button></td>
                 </tr>
               ))}
             </tbody>

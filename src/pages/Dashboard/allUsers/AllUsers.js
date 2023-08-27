@@ -1,10 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import Speener from '../../../Speener/Speener';
+import { toast } from 'react-hot-toast';
 
 const AllUsers = () => {
 
-    const { data: users, isLoading } = useQuery({
+    const { data: users, isLoading, refetch } = useQuery({
         queryKey: ["allUsers"],
         queryFn: async () => {
           const res = await fetch("http://localhost:5000/allUsers")
@@ -13,6 +14,19 @@ const AllUsers = () => {
           return data;
         },
       });
+
+      const handleSubmit = (id)=>{
+        fetch(`http://localhost:5000/users/${id}`,{
+            method : "PUT"
+        })
+        .then( res => res.json())
+        .then(data => {
+            if(data.modifiedCount > 0){
+                toast.success("admin role created")
+                refetch()
+            }
+        })
+      }
     return (
         <div className="overflow-x-auto">
         <table className="table">
@@ -35,8 +49,8 @@ const AllUsers = () => {
                   <th>{i + 1}</th>
                   <td>{user.name}</td>
                   <td>{user.email}</td>
-                  <td><button className='btn btn-xs bg-blue-500 text-white'>Make Admin</button></td>
-                  <td><button className='btn btn-xs bg-red-500 text-white'>Make Admin</button></td>
+                  <td>{user?.role !== "admin" && <button onClick={()=> handleSubmit(user._id)} className='btn btn-xs bg-blue-500 text-white'>Make Admin</button>}</td>
+                  <td><button className='btn btn-xs bg-red-500 text-white'>Delete</button></td>
                 </tr>
               ))}
             </tbody>

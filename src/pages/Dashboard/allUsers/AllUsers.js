@@ -49,7 +49,7 @@ const AllUsers = () => {
                   <th>{i + 1}</th>
                   <td>{user.name}</td>
                   <td>{user.email}</td>
-                  <td>{user?.role !== "admin" && <button onClick={()=> handleSubmit(user._id)} className='btn btn-xs bg-blue-500 text-white'>Make Admin</button>}</td>
+                  <td>{user?.role !== "admin" ? <button onClick={()=> handleSubmit(user._id)} className='btn btn-xs bg-blue-500 text-white'>Make Admin</button> : "Admin"}</td>
                   <td><button className='btn btn-xs bg-red-500 text-white'>Delete</button></td>
                 </tr>
               ))}

@@ -1,9 +1,13 @@
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
+import React, { useContext } from 'react';
 import Speener from '../../../Speener/Speener';
 import { toast } from 'react-hot-toast';
+import { ContextAuth } from '../../../ContextApi/ContextProvider';
 
 const AllUsers = () => {
+
+    const {user} = useContext(ContextAuth)
+    const {email} = user;
 
     const { data: users, isLoading, refetch } = useQuery({
         queryKey: ["allUsers"],
@@ -15,9 +19,13 @@ const AllUsers = () => {
         },
       });
 
-      const handleSubmit = (id)=>{
+      const handleSubmit = (id, email)=>{
         fetch(`http://localhost:5000/users/${id}`,{
-            method : "PUT"
+            method : "PUT",
+            headers :{
+                "content-type": "application/json"
+            },
+            body : JSON.stringify({email : email})
         })
         .then( res => res.json())
         .then(data => {
@@ -49,7 +57,7 @@ const AllUsers = () => {
                   <th>{i + 1}</th>
                   <td>{user.name}</td>
                   <td>{user.email}</td>
-                  <td>{user?.role !== "admin" ? <button onClick={()=> handleSubmit(user._id)} className='btn btn-xs bg-blue-500 text-white'>Make Admin</button> : "Admin"}</td>
+                  <td>{user?.role !== "admin" ? <button onClick={()=> handleSubmit(user._id,email)} className='btn btn-xs bg-blue-500 text-white'>Make Admin</button> : "Admin"}</td>
                   <td><button className='btn btn-xs bg-red-500 text-white'>Delete</button></td>
                 </tr>
               ))}

@@ -20,7 +20,7 @@ const AllUsers = () => {
       });
 
       const handleSubmit = (id, email)=>{
-        fetch(`http://localhost:5000/users/${id}`,{
+        fetch(`http://localhost:5000/users/admin/${id}`,{
             method : "PUT",
             headers :{
                 "content-type": "application/json"

@@ -1,8 +1,13 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { FingerPrintIcon, UserPlusIcon, UserGroupIcon } from "@heroicons/react/24/solid";
+import useAdmin from '../Shared/hooks/useAdmin';
+import { useContext } from 'react';
+import { ContextAuth } from '../../ContextApi/ContextProvider';
 
 const UserMenu = () => {
+  const {user} = useContext(ContextAuth)
+  const [isAdmin] = useAdmin(user?.email)
     return (
         <>
         <NavLink
@@ -17,7 +22,8 @@ const UserMenu = () => {
   
           <span className="mx-4 font-medium">My Appointment</span>
         </NavLink>
-        <NavLink
+        {
+          isAdmin && <><NavLink
           to="allUsers"
           className={({ isActive }) =>
             `flex items-center px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
@@ -28,7 +34,8 @@ const UserMenu = () => {
           <UserGroupIcon className="w-5 h-5" />
   
           <span className="mx-4 font-medium">All Users</span>
-        </NavLink>
+        </NavLink></>
+        }
   
         <NavLink
           to="become-host"

@@ -38,13 +38,15 @@ const Navbar = () => {
                   Appointment
                 </li>
               </Link>
-              <Link to="/dashbord">
+              {
+                user && <Link to="/dashbord">
                 <li
                   className={`${animationClass} hover:bg-[#3A4256] px-3 rounded`}
                 >
                   Dashbord
                 </li>
               </Link>
+              }
               <Link href="/">
                 <li
                   className={`${animationClass} hover:bg-[#3A4256] px-3 rounded`}
@@ -99,31 +101,48 @@ const Navbar = () => {
               Home
             </li>
           </Link>
-          <Link href="/dashbord">
+          <Link to="/appointment">
             <li className={`${animationClass} hover:bg-[#3A4256] px-3 rounded`}>
               Appointment
             </li>
           </Link>
-          <Link href="/blog">
+          {
+            user && <Link  to="/dashbord">
             <li className={`${animationClass} hover:bg-[#3A4256] px-3 rounded`}>
-              Reviews
+              Dashbord
             </li>
           </Link>
-          <Link href="/SignIn">
-            <li className={`${animationClass} hover:bg-[#3A4256] px-3 rounded`}>
-              Contact Us
-            </li>
-          </Link>
+          }
           <Link href="/">
             <li className={`${animationClass} hover:bg-[#3A4256] px-3 rounded`}>
               About
             </li>
           </Link>
-          <Link href="/">
-            <li className={`${animationClass} hover:bg-[#3A4256] px-3 rounded`}>
-              Log In
-            </li>
-          </Link>
+          {user ? (
+                <button
+                  onClick={handleLogOut}
+                  className={`${animationClass} hover:bg-[#3A4256] px-3 rounded`}
+                >
+                  <li>Log out</li>
+                </button>
+              ) : (
+                <>
+                  <Link to="/signup">
+                    <li
+                      className={`${animationClass} hover:bg-[#3A4256] px-3 rounded`}
+                    >
+                      Sign Up
+                    </li>
+                  </Link>
+                  <Link to="/login">
+                    <li
+                      className={`${animationClass} hover:bg-[#3A4256] px-3 rounded`}
+                    >
+                      Log In
+                    </li>
+                  </Link>
+                </>
+              )}
         </ul>
       </nav>
     </>

@@ -21,7 +21,7 @@ const Sidebar = () => {
       <div className='bg-gray-100 text-gray-800 flex justify-between md:hidden'>
         <div>
           <div className='block cursor-pointer p-4 font-bold'>
-            <Link to='/'>AirCnC</Link>
+            <Link to='/'>Doctor portal</Link>
           </div>
         </div>
 

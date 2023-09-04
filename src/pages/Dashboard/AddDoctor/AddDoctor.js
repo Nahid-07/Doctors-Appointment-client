@@ -1,10 +1,21 @@
+import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import { useForm } from "react-hook-form";
+import Speener from "../../../Speener/Speener";
 
 const AddDoctor = () => {
+
+  const { data : specialities, isLoading} = useQuery({queryKey:["appointmentSpecialty"], queryFn: async()=>{
+    const res =await fetch("http://localhost:5000/appointmentSpecialty");
+    const data = await res.json();
+    return data
+  }})
   const {handleSubmit, register} = useForm()
   const doctorData = (data)=>{
     console.log(data);
+  }
+  if(isLoading){
+    return <Speener></Speener>
   }
   return (
     <div className="flex justify-center">
@@ -33,14 +44,11 @@ const AddDoctor = () => {
         </div>
         <div>
           <select {...register("speciality")} className="select select-bordered w-full max-w-xs mb-5">
-            <option value="Teeth Cleaning">
-            Teeth Cleaning
-            </option>
-            <option value="Cosmetic Dentistry">Cosmetic Dentistry</option>
-            <option value="Cavity Protection">Cavity Protection</option>
-            <option value="Teeth Orthodontics">Teeth Orthodontics</option>
-            <option value="Oral Surgery">Oral Surgery</option>
-            <option value="Pediatric Dental">Pediatric Dental</option>
+            {
+              specialities.map(speciality => <option key={speciality._id} value={speciality.name}>
+              {speciality.name}
+              </option>)
+            }
           </select>
         </div>
         <div>

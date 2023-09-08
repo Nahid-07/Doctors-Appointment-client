@@ -26,12 +26,13 @@ const AddDoctor = () => {
       method: "POST",
       body: formData,
     }).then((res) => res.json().then((imageData) => {
+      console.log(imageData);
       if(imageData.success){
         const doctorData = {
           DoctorName : data.doctorName,
           doctorEmail : data.doctorEmail,
           speciality : data.speciality,
-          image : imageData.url
+          image : imageData.data.url
         }
         fetch("http://localhost:5000/doctorCollection",{
           method : "POST",

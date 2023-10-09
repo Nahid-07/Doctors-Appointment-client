@@ -35,6 +35,14 @@ const AllUsers = () => {
             }
         })
       }
+      const handleDelete = (id)=>{
+        fetch(`http://localhost:5000/deleteuser/${id}`,{
+          method : "DELETE",
+        }).then(res => res.json()).then(data => {
+          console.log(data);
+          refetch()
+        })
+      }
     return (
         <div className="overflow-x-auto">
         <table className="table">
@@ -58,7 +66,7 @@ const AllUsers = () => {
                   <td>{user.name}</td>
                   <td>{user.email}</td>
                   <td>{user?.role !== "admin" ? <button onClick={()=> handleSubmit(user._id,email)} className='btn btn-xs bg-blue-500 text-white'>Make Admin</button> : "Admin"}</td>
-                  <td><button className='btn btn-xs bg-red-500 text-white'>Delete</button></td>
+                  <td><button onClick={()=>handleDelete(user._id)} className='btn btn-xs bg-red-500 text-white'>Delete</button></td>
                 </tr>
               ))}
             </tbody>

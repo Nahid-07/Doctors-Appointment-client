@@ -27,6 +27,7 @@ const DoctorList = () => {
             refetch()
           }
         }
+          
       });
   };
   if (isLoading) {

@@ -30,7 +30,6 @@ const ContextProvider = ({children}) => {
     const updateUser = (userInfo)=>{
         return updateProfile(AuthProvider.currentUser, userInfo)
     }
-    
     // state observer
     useEffect(()=>{
         const unsubscribe = onAuthStateChanged(AuthProvider, currentUser=>{

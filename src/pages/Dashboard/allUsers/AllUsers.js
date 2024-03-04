@@ -15,7 +15,7 @@ const AllUsers = () => {
   } = useQuery({
     queryKey: ["allUsers"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/allUsers");
+      const res = await fetch("https://doctor-server-tan.vercel.app/allUsers");
 
       const data = await res.json();
       return data;
@@ -23,7 +23,7 @@ const AllUsers = () => {
   });
 
   const handleSubmit = (id, email) => {
-    fetch(`http://localhost:5000/users/admin/${id}`, {
+    fetch(`https://doctor-server-tan.vercel.app/users/admin/${id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",
@@ -39,7 +39,7 @@ const AllUsers = () => {
       });
   };
   const handleDelete = (id) => {
-    fetch(`http://localhost:5000/deleteuser/${id}`, {
+    fetch(`https://doctor-server-tan.vercel.app/deleteuser/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())

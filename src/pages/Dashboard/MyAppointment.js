@@ -5,7 +5,7 @@ import Speener from "../../Speener/Speener";
 
 const MyAppointment = () => {
   const { user } = useContext(ContextAuth);
-  const url = `http://localhost:5000/bookings?email=${user?.email}`;
+  const url = `https://doctor-server-tan.vercel.app/bookings?email=${user?.email}`;
   const { data: bookings, isLoading } = useQuery({
     queryKey: ["bookings", user?.email],
     queryFn: async () => {

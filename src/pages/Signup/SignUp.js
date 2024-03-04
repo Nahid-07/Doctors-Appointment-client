@@ -44,7 +44,7 @@ const SignUp = () => {
     const saveUserToDatabase = (email, name) => {
       const user = { email, name };
 
-      fetch("http://localhost:5000/users", {
+      fetch("https://doctor-server-tan.vercel.app/users", {
         method: "POST",
         headers: {
           "content-type": "application/json",

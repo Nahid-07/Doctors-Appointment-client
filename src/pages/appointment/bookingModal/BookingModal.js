@@ -27,7 +27,7 @@ const BookingModal = ({ bookingOption, selectedDate, setBookingOption, refetch }
 
     // send booking data to the database
 
-    fetch("http://localhost:5000/bookings", {
+    fetch("https://doctor-server-tan.vercel.app/bookings", {
       method: "POST",
       headers: {
         "content-type": "application/json",

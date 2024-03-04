@@ -10,13 +10,13 @@ const DoctorList = () => {
   } = useQuery({
     queryKey: ["doctors"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/doctors");
+      const res = await fetch("https://doctor-server-tan.vercel.app/doctors");
       const data = await res.json();
       return data;
     },
   });
   const handleDelete = (id) => {
-    fetch(`http://localhost:5000/doctordelete/${id}`, {
+    fetch(`https://doctor-server-tan.vercel.app/doctordelete/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())

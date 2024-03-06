@@ -10,11 +10,13 @@ import ContactUs from '../ContactUs/ContactUs';
 const Home = () => {
     return (
         <>
-        <div className='max-w-7xl mx-auto'>
+        <div>
             <Banner></Banner>
+            <section className='max-w-7xl mx-auto'>
             <ReachUs></ReachUs>
             <Services></Services>
             <DentalCareBanner></DentalCareBanner>
+            </section>
         </div>
         <Banner2></Banner2>
         <div className='max-w-7xl mx-auto'>

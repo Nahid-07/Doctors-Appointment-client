@@ -10,8 +10,8 @@ const Services = () => {
         <h3 className="text-[#19D3AE] text-xl uppercase font-semibold">our services</h3>
         <p className="capitalize text-[#3A4256] text-4xl">Service we provide</p>
     </div>
-    <div className="md:flex justify-between gap-10 my-10">
-      <div className="flex flex-col items-center">
+    <div className="md:flex justify-between gap-10 my-10 text-white">
+      <div className="flex flex-col items-center bg-[#2D9596] p-10">
         <div className="mb-5">
           <img src={floride} alt="" />
         </div>
@@ -23,7 +23,7 @@ const Services = () => {
           </p>
         </div>
       </div>
-      <div className="flex flex-col items-center my-8 md:my-0">
+      <div className="flex flex-col items-center my-8 md:my-0 bg-[#265073] p-10">
         <div className="mb-5">
           <img src={cavity} alt="" />
         </div>
@@ -35,7 +35,7 @@ const Services = () => {
           </p>
         </div>
       </div>
-      <div className="flex flex-col items-center">
+      <div className="flex flex-col items-center bg-[#2D9596] p-10">
         <div className="mb-5">
           <img src={whitning} alt="" />
         </div>

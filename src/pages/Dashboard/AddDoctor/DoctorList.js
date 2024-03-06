@@ -12,6 +12,7 @@ const DoctorList = () => {
     queryFn: async () => {
       const res = await fetch("https://doctor-server-tan.vercel.app/doctors");
       const data = await res.json();
+      console.log(data);
       return data;
     },
   });
